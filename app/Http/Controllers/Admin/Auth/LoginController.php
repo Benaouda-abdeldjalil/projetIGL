@@ -6,9 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
-use App\User;
-use App\Admin;
-use Illuminate\Support\Facades\hash;
 class LoginController extends Controller
 {
     /*
@@ -40,6 +37,15 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+     /**
+ * @OA\Get(
+ *  path="/admin/login",
+ *      summary="showLoginForm()",
+ *  description="Show the application's login form.",
+ *     @OA\Response(response="200", description= "show Login Form"),
+ *
+ * )
+ */
     /**
      * Show the application's login form.
      *
@@ -49,6 +55,22 @@ class LoginController extends Controller
     {
         return view('admin.login');
     }
+    /**
+ * @OA\Post(
+ *      path="/admin/login",
+ *     summary="login(Request $request)",
+ *     description=" Handle a login request to the application.",
+ * @OA\Parameter(
+ *         name="\Illuminate\Http\Request  $request",
+ *         in="query",
+ *         
+ *     ),
+ * @OA\Response(
+ *         response=200,
+ *         description="OK",
+ *     ),
+ * )
+ */
      /**
      * Handle a login request to the application.
      *
@@ -57,40 +79,10 @@ class LoginController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+
     public function login(Request $request)
     {
-        $user=new User;
-        $user=User::whereEmailAndPassword($request['email'],sha1($request['motpass']))->get();
-        if(count($user)>0){
-            return response([
-                'status'=>'succeslogin',
-                'data'=>[
-                    'email'=>$request['email'],
-                    'motpass'=>$request['motpass'],
-                    'user_con'=>$user[0]->prof
-                ]
-            ]);
-        }else{
-            $admin=new Admin;
-            $admin=Admin::whereEmailAndPassword($request['email'],sha1($request['motpass']))->get();
-            if(count($admin)>0){
-                return response([
-                    'status'=>'succeslogin',
-                    'data'=>[
-                        'email'=>$request['email'],
-                        'motpass'=>$request['motpass'],
-                        'user_con'=>'a'
-                    ]
-                ]);
-            }else{
-                return response([
-                    'status'=>'wronglogin',
-                    'data'=>null
-                ]);
-            }
-        }
-
-       /* $this->validateLogin($request);
+        $this->validateLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
@@ -111,7 +103,7 @@ class LoginController extends Controller
         // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
 
-        return $this->sendFailedLoginResponse($request);*/
+        return $this->sendFailedLoginResponse($request);
     }
   /**
      * Get the guard to be used during authentication.

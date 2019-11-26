@@ -1,0 +1,153 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "DOCUMENTATION",
+        "version": "0.1"
+    },
+    "paths": {
+        "/admin/login": {
+            "get": {
+                "summary": "showLoginForm()",
+                "description": "Show the application's login form.",
+                "responses": {
+                    "200": {
+                        "description": "show Login Form"
+                    }
+                }
+            },
+            "post": {
+                "summary": "login(Request $request)",
+                "description": " Handle a login request to the application.",
+                "parameters": [
+                    {
+                        "name": "\\Illuminate\\Http\\Request  $request",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/ajouteretud": {
+            "get": {
+                "summary": "index()",
+                "responses": {
+                    "200": {
+                        "description": " Afficher  le formulaire d'ajout d'un  étudiant."
+                    }
+                }
+            }
+        },
+        "/SauvEtud": {
+            "post": {
+                "summary": "store(Request $request)",
+                "description": "  Récupere les données depuis le formulaire et les insérer dans la base de données.",
+                "operationId": "App\\Http\\Controllers\\Admin\\CreeretudController::store",
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "query",
+                        "description": "le  formulaire qui a été envoyé"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/ajouterprof": {
+            "get": {
+                "summary": "index()",
+                "operationId": "App\\Http\\Controllers\\Admin\\CreerprofController::index",
+                "responses": {
+                    "200": {
+                        "description": " Afficher  le formulaire d'ajout d'un enseignant."
+                    }
+                }
+            }
+        },
+        "/Sauvprof": {
+            "post": {
+                "summary": "store(Request $request)",
+                "description": "  Récupere les données depuis le formulaire et les insérer dans la base de données.",
+                "operationId": "App\\Http\\Controllers\\Admin\\CreerprofController::store",
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "query",
+                        "description": "le  formulaire qui a été envoyé"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/deconnexion": {
+            "get": {
+                "summary": "dec()",
+                "operationId": "App\\Http\\Controllers\\DecController::dec",
+                "responses": {
+                    "200": {
+                        "description": " Déconnecter et fermer la session"
+                    }
+                }
+            }
+        },
+        "/ajoutNote": {
+            "get": {
+                "summary": "index()",
+                "responses": {
+                    "200": {
+                        "description": " Afficher  le formulaire d'ajout d'une note ."
+                    }
+                }
+            }
+        },
+        "/create": {
+            "get": {
+                "summary": "create()",
+                "responses": {
+                    "200": {
+                        "description": " Afficher  le formulaire d'ajout d'une note."
+                    }
+                }
+            }
+        },
+        "/sauvNote": {
+            "post": {
+                "summary": "store(Request $request)",
+                "description": "  Récupere les données depuis le formulaire  d'ajout d'une note et les insérer dans la base de données.",
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "query",
+                        "description": "le  formulaire qui a été envoyé"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/afficherNote": {
+            "get": {
+                "summary": "index()",
+                "responses": {
+                    "200": {
+                        "description": " Afficher  toutes les notes."
+                    }
+                }
+            }
+        }
+    }
+}

@@ -9,14 +9,44 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
+
 class CreeretudController extends Controller{
-    
+  /**
+ * @OA\Get(
+ *  path="/ajouteretud",
+ *      summary="index()",
+ *     @OA\Response(response="200", description=" Afficher  le formulaire d'ajout d'un  étudiant."),
+ *
+ * )
+ */
+    /**
+     * index
+     *
+     * @return void
+     */
     public function index()
     {
-       return view ('CreerEtudiant');
+        return view ('CreerEtudiant');
+       
     }
 
-
+ /**
+ * @OA\Post(
+ *      path="/SauvEtud",
+ *     summary="store(Request $request)",
+ *     description="  Récupere les données depuis le formulaire et les insérer dans la base de données.",
+ * @OA\Parameter(
+ *         name="request",
+ *         in="query",
+ *         description="le  formulaire qui a été envoyé",
+ *        
+ *     ),
+ * @OA\Response(
+ *         response=200,
+ *         description="OK",
+ *     ),
+ * )
+ */
 
     public function store (Request $request)
     {
@@ -50,10 +80,11 @@ class CreeretudController extends Controller{
             'groupe'=>$groupe,
             )
         );
-       // $img=DB::table('etudiant')->whereid($id)->select('URLimg')->value('URLimg');
-       // Session::put('image',$img);
+      
 
-        return redirect('/admin/home')->with('succes','etudiant ajouté');
+        //return redirect('/admin/home')->with('succes','etudiant ajouté');
+       // return response()->json(null,201);//pour retourner vers la page du adminet dise que la creation etait faite avec succe 
+    
     }
 
 

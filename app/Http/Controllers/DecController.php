@@ -12,6 +12,14 @@ use Session;
 class DecController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    /**
+ * @OA\Get(
+ *  path="/deconnexion",
+ *      summary="dec()",
+ *     @OA\Response(response="200", description=" Déconnecter et fermer la session"),
+ *
+ * )
+ */
     public function dec(){
         auth()->logout();
         Session::flush();
