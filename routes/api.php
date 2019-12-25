@@ -16,8 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-    
+Route::post('/ensg/add','EnseignantController@store');
+Route::post('/etudiant/add','EtudiantController@store');
 Route::namespace('Admin')->group(function(){
     Route::get('/admin/login','Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('/admin/login','Auth\LoginController@login');
@@ -30,6 +30,7 @@ Route::namespace('Admin')->group(function(){
     Route::post('/Sauvprof','CreerprofController@store');
     //Formulaire d'ajout d'un etudiant
     Route::get('/ajouterprof','CreerprofController@index')->name('etud');
-       
+
+    
     }
 );
