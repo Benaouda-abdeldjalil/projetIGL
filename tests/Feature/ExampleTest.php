@@ -7,11 +7,16 @@ use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**@test */
+    /**
+     * @test 
+     * 
+    */
     
     public function everthing_should_work()
     {
 
-        $this->assertTrue(false);
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
     }
 }
