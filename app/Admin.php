@@ -10,5 +10,4 @@ use Illuminate\Database\Eloquent\Model;
 class Admin extends Authenticatable
 {
     use Notifiable;
-    protected $table="admins";
 }

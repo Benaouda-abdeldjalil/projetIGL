@@ -14,7 +14,7 @@ class AddProfToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('prof');
+            $table->string('prof')->nullable();
         });
     }
 
