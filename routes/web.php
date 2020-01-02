@@ -14,12 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/', function () { return view('Index'); });
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('note','NoteController')->middleware('utilisateur');
-Route::resource('notes','NotesController')->middleware('utilisateur');
+
 /*Admin auth routes*/
 //Route::get('/admin/login','Auth\LoginController@showLoginForm')->name('admin.login');
 
