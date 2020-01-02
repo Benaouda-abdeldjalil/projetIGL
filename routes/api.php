@@ -20,6 +20,7 @@ Route::post('/ensg/add','EnseignantController@store');
 Route::post('/etudiant/add','EtudiantController@store');
 Route::post('/note','NoteController@store');
 Route::post('/notes','NotesController@index');
+
 Route::namespace('Admin')->group(function(){
     Route::get('/admin/login','Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('/admin/login','Auth\LoginController@login');
