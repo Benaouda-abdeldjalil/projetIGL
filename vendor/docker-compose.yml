@@ -1,0 +1,49 @@
+version: '2'
+
+services:
+
+  #  The Application
+  app:
+    container_name: laravel_app
+    build:
+      context: ./docker/web
+      
+    volumes:
+      - ./storage:/var/www/storage
+    
+    
+
+  # The Web Server
+  web:
+    container_name: laravel_web
+    build:
+      context: ./docker/web
+     
+    volumes:
+      - ./storage/logs/:/var/log/nginx
+    ports:
+      - 8990:80
+
+  # The Database
+ 
+  database:
+    container_name: mysql_database
+    image: mysql:5.7
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=projet"
+      - "MYSQL_USER=root"
+      - "MYSQL_PASSWORD= "
+      
+    ports:
+      - 8991:3306
+
+    # redis
+  cache:
+    
+    image: redis:3.0-alpine
+
+volumes:
+  dbdata:
+
